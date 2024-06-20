@@ -65,8 +65,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             echo "${{ secrets.DOCKER_PASSWORD }}" | docker login ${{ secrets.DOCKER_REGISTRY }} -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-            docker pull dufi1928/eduathena:latest
-            docker service ls | grep eduathena_service && \
-            docker service update --image dufi1928/eduathena:latest --force eduathena_service || \
-            docker service create --name eduathena_service --publish published=8080,target=3000 $dufi1928/eduathena:latest
+            docker pull ${{ secrets.DOCKER_REGISTRY }}/eduathena:latest
+            docker service ls | grep eduathena_service && docker service update --image ${{ secrets.DOCKER_REGISTRY }}/eduathena:latest --force eduathena_service || docker service create --name eduathena_service --publish published=8080sudo ln -s /etc/nginx/sites-available/myapp /etc/nginx/sites-enabled/,target=3000 ${{ secrets.DOCKER_REGISTRY }}/dufi1928/eduathena:latest
             docker service ls
