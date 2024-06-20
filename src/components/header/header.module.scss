@@ -1,0 +1,200 @@
+@import "../../assets/fonts/fonts";
+
+
+.signup_button{
+    margin-bottom: 30px;
+    background: var(--button-primary);
+    border: none;
+    border-radius: 5px;
+    color: var(--background-primary);
+    padding: 5px 25px;
+    font-family: var(--text-primary);
+    font-size: var(--text-md);
+    @media screen and (max-width: 1200px) and (min-width: 950px) {
+        font-size: var(--text-sm);
+    }
+    @media screen and (max-width: 950px) and (min-width: 800px) {
+        padding: 5px 15px;
+        font-size: var(--text-sm);
+    }
+    @media screen and (max-width: 800px) and (min-width: 680px) {
+        padding: 4px 10px;
+        font-size: var(--text-sm);
+    }
+}
+.mibile_header{
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    width: 100%;
+    display: none;
+    align-items: center;
+    height: 50px;
+    background-color: var(--background-primary);
+    .menuIcon{
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+    }
+    .mobile_logo{
+        display: inherit;
+        min-width: calc(100% - 44px);
+        justify-content: center;
+        text-align: center;
+        color: var(--primary-grey);
+        font-weight: bold;
+        font-family: var(--primary-text);
+        font-size: var(--text-lg);
+    }
+}
+
+@media (min-width: 1200px) {
+    .left_side , .right_side{
+        font-size: var(--text-md);
+    }
+}
+@media screen and (max-width: 1000px) {
+    .nav{
+        padding: 0 20px ;
+    }
+    .desktop_logo {
+        font-size: var(--text-md);
+    }
+}
+@media screen and (min-width: 1000px) {
+    .nav{
+        padding: 0 50px ;
+    }
+    .left_side , .right_side{
+        width: 30%;
+    }
+    .desktop_logo{
+        font-size: var(--text-lg);
+        width: 40%;
+    }
+
+}
+@media (min-width: 680px) {
+    .header{
+        position: fixed; /* Set the navbar to fixed position */
+        top: 0; /* Position the navbar at the top of the page */
+        z-index: 3;
+        width: 100%;
+    }
+    .nav{
+        margin: auto;
+        background: var(--background-primary);
+        height: 75px;
+        display: flex;
+        justify-content: space-between;
+        .left_side , .right_side , .user_icon, .signup_button{
+            display: flex;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .left_side , .right_side{
+            width: 35%;
+            align-items: center;
+            color: var(--primary-grey);
+            font-weight: 500;
+            justify-content: space-evenly;
+            font-size: var(--text-lg);
+        }
+        .desktop_logo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-family: var(--primary-text);
+            letter-spacing: 1px;
+            color: var(--primary-grey);
+        }
+    }
+}
+@media screen and (min-width: 950px) and (max-width: 1200px){
+    .nav{
+        .left_side , .right_side{
+            width: 35%;
+        }
+        .desktop_logo{
+            width: 30%;
+        }
+    }
+}
+@media (max-width: 680px) {
+    @keyframes slidOut {
+        0% {
+            transform: translateX(0%);
+        }
+        25% {
+            transform: translateX(10%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+    .hide{
+        animation: slidOut 0.6s ease-in-out forwards;
+    }
+
+    .nav{
+        visibility: visible;
+        position: fixed;
+        top: 0;
+        overflow: hidden;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        z-index: 2;
+        width: 100%;
+        background-color: var(--background-primary);
+        height: calc(100% + 50px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .left_side, .right_side{
+            font-weight: 500;
+            flex-direction: column;
+            align-items: center;
+            display: inherit;
+            justify-content: center;
+            width: 100%;
+            .user_icon{
+                display: none;
+            }
+        }
+    }
+    .initial_state{
+        visibility: hidden;
+    }
+    @keyframes slideIn {
+        0% {
+            transform: translateX(-100%);
+        }
+        25% {
+            transform: translateX(0);
+        }
+        50% {
+            transform: translateX(-10%);
+        }
+        75% {
+            transform: translateX(10%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+    .show {
+        animation: slideIn 0.6s ease-in-out;
+        animation-fill-mode: forwards; /* Ajoutez cette ligne */
+    }
+
+    .mibile_header{
+        display: flex;
+    }
+    .desktop_logo{
+        display: none;
+    }
+}

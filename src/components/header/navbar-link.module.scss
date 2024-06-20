@@ -1,0 +1,31 @@
+.link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    font-size: inherit;
+    letter-spacing: 1px;
+    line-height: 27px;
+    font-family: nunito, sans-serif;
+    color: var(--primary-grey);
+    text-decoration: none;
+    @media (max-width: 680px) {
+        width: 50%;
+        justify-content: center;
+        margin-bottom: 5px;
+    }
+}
+.link:hover{
+    cursor: pointer;
+}
+@media (max-width: 1200px) {
+    .link{
+        font-size: var(--text-md);
+    }
+}
+@media (max-width: 680px) {
+    .link{
+        font-size: var(--text-lg);
+        margin-bottom: 30px;
+    }
+}
