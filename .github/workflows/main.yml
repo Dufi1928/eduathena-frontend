@@ -66,5 +66,9 @@ jobs:
           script: |
             echo "${{ secrets.DOCKER_PASSWORD }}" | docker login ${{ secrets.DOCKER_REGISTRY }} -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
             docker pull ${{ secrets.DOCKER_REGISTRY }}/eduathena:latest
-            docker service ls | grep eduathena_service && docker service update --image ${{ secrets.DOCKER_REGISTRY }}/eduathena:latest --force eduathena_service || docker service create --name eduathena_service --publish published=8080sudo ln -s /etc/nginx/sites-available/myapp /etc/nginx/sites-enabled/,target=3000 ${{ secrets.DOCKER_REGISTRY }}/dufi1928/eduathena:latest
+            if docker service inspect eduathena_service > /dev/null 2>&1; then
+              docker service update --image ${{ secrets.DOCKER_REGISTRY }}/eduathena:latest --force eduathena_service
+            else
+              docker service create --name eduathena_service --publish 80:3000 ${{ secrets.DOCKER_REGISTRY }}/eduathena:latest
+            fi
             docker service ls
