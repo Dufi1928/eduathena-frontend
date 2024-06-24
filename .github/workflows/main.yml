@@ -57,7 +57,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-push
     steps:
-      - name: Deploy to Docker Swarm
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup SSH
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -65,10 +67,17 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             echo "${{ secrets.DOCKER_PASSWORD }}" | docker login ${{ secrets.DOCKER_REGISTRY }} -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+            # Pull the latest images
             docker pull ${{ secrets.DOCKER_REGISTRY }}/eduathena:latest
-            if docker service inspect eduathena_service > /dev/null 2>&1; then
-              docker service update --image ${{ secrets.DOCKER_REGISTRY }}/eduathena:latest --force eduathena_service
-            else
-              docker service create --name eduathena_service --publish 80:3000 ${{ secrets.DOCKER_REGISTRY }}/eduathena:latest
-            fi
+            docker pull traefik:v2.5
+
+            # Deploy using Docker Compose
+            export DOCKER_COMPOSE_VERSION=1.27.4
+            curl -L "https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            chmod +x /usr/local/bin/docker-compose
+            docker-compose -f docker-compose.yml config
+            docker stack deploy -c docker-compose.yml eduathena --with-registry-auth
+
+            # List services to verify deployment
             docker service ls

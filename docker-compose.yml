@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  traefik:
+    image: traefik:v2.5
+    command:
+      - "--log.level=INFO"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.swarmMode=true"
+      - "--providers.docker.exposedByDefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.myresolver.acme.email=ivanhrybe@gmail.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./letsencrypt:/letsencrypt"
+    networks:
+      - web
+
+  myapp:
+    image: dufi1928/eduathena:latest
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.myapp.rule=Host(`eduathena.com`)"
+      - "traefik.http.routers.myapp.entrypoints=web"
+      - "traefik.http.routers.myapp-secure.rule=Host(`eduathena.com`)"
+      - "traefik.http.routers.myapp-secure.entrypoints=websecure"
+      - "traefik.http.routers.myapp-secure.tls.certresolver=myresolver"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
+    name: traefik-public
