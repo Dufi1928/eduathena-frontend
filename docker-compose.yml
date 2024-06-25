@@ -2,33 +2,36 @@ version: '3.8'
 
 services:
   traefik:
-    image: traefik:v3.0  # Updated to use the newer Traefik version as per your documentation reference.
+    image: traefik:v3.0
     container_name: traefik
     command:
-      - "--log.level=INFO"
+      - "--log.level=DEBUG"
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
+      - "--entryPoints.web.address=:80"
       - "--entryPoints.websecure.address=:443"
       - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
       - "--certificatesresolvers.myresolver.acme.email=ivanhrybe@gmail.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
+      - "80:80"
       - "443:443"
-      - "8080:8080"  # Exposing the Traefik dashboard and API on port 8080 for ease of access.
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"  # Ensuring Docker socket is read-only for security.
-      - "./letsencrypt:/letsencrypt"  # Mapping for certificate storage
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./letsencrypt:/letsencrypt"
+    networks:
+      - web
 
   myapp:
     image: dufi1928/eduathena:latest
-    container_name: simple-service  # Naming for clarity
+    container_name: simple-service
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.myapp.rule=Host(`eduathena.com`)"
       - "traefik.http.routers.myapp.entrypoints=websecure"
       - "traefik.http.routers.myapp.tls.certresolver=myresolver"
-      - "traefik.http.services.myapp.loadbalancer.server.port=3000"  # Specifying the internal port myapp listens on
+      - "traefik.http.services.myapp.loadbalancer.server.port=3000"
     networks:
       - web
 
