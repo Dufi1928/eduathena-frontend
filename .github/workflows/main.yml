@@ -73,6 +73,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
+          port: 2222
           script: |
             # Navigate to the directory containing docker-compose.yml
             cd /home/ivan/deployments
