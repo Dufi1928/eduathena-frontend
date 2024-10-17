@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   traefik:
-    image: traefik:v3.0
+    image: traefik:v2.10
     container_name: traefik
     command:
       - "--log.level=DEBUG"
@@ -37,5 +37,4 @@ services:
 
 networks:
   web:
-    external: true
-    name: traefik-public
+    external: false
