@@ -3,7 +3,6 @@ version: '3.8'
 services:
   traefik:
     image: traefik:v2.10
-    container_name: traefik
     command:
       - "--log.level=DEBUG"
       - "--api.insecure=true"
@@ -19,13 +18,16 @@ services:
       - "443:443"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "./letsencrypt:/letsencrypt"
+      - "letsencrypt:/letsencrypt"
     networks:
       - web
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
 
   myapp:
     image: dufi1928/eduathena:latest
-    container_name: simple-service
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.myapp.rule=Host(`eduathena.com`)"
@@ -34,7 +36,14 @@ services:
       - "traefik.http.services.myapp.loadbalancer.server.port=3000"
     networks:
       - web
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
 networks:
   web:
     external: false
+
+volumes:
+  letsencrypt:
