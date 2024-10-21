@@ -2,25 +2,33 @@
 FROM node:18-alpine AS builder
 WORKDIR /app
 
+# Installer pnpm
+RUN npm install -g pnpm
+
 # Copier les fichiers de dépendances
-COPY package.json package-lock.json ./
+COPY package.json pnpm-lock.yaml ./
 
 # Installer les dépendances
-RUN npm ci
+RUN pnpm install --frozen-lockfile
 
 # Copier le reste du code source
 COPY . .
 
 # Construire l'application Next.js
-RUN npm run build
+RUN pnpm run build
 
 # Étape 2 : Production
 FROM node:18-alpine AS production
 WORKDIR /app
 
+# Installer pnpm
+RUN npm install -g pnpm
+
+# Copier les fichiers de dépendances
+COPY package.json pnpm-lock.yaml ./
+
 # Installer uniquement les dépendances de production
-COPY package.json package-lock.json ./
-RUN npm ci --only=production
+RUN pnpm install --prod --frozen-lockfile
 
 # Copier le build de l'application
 COPY --from=builder /app/.next ./.next
@@ -29,5 +37,6 @@ COPY --from=builder /app/public ./public
 # Exposer le port de l'application
 EXPOSE 3000
 
+
 # Démarrer l'application
-CMD ["npm", "start"]
+CMD ["pnpm", "start"]

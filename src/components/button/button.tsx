@@ -7,9 +7,11 @@ interface ButtonProps {
     width?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
+const Button: React.FC<ButtonProps> = ({ label, onClick, height = 'auto', width = 'auto' }) => {
     return (
-        <button onClick={onClick}>{label}</button>
+        <button onClick={onClick} style={{ height: height, width: width }}>
+            {label}
+        </button>
     );
 };
 
