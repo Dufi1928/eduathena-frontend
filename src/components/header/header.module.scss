@@ -1,15 +1,82 @@
 @import "../../assets/fonts/fonts";
 
+.header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+    transition: transform 0.3s ease-in-out;
+}
+.hidden {
+    transform: translateY(-100%);
+}
 
-.signup_button{
+.visible {
+    transform: translateY(0);
+}
+.user_icon:hover{
+    cursor: pointer;
+}
+
+.signup_button {
     margin-bottom: 30px;
-    background: var(--button-primary);
-    border: none;
+    background: none;
+    border: 2px solid var(--button-primary);
     border-radius: 5px;
-    color: var(--background-primary);
+    color: var(--button-primary);
     padding: 5px 25px;
-    font-family: var(--text-primary);
+    font-family: var(--primary-text);
     font-size: var(--text-md);
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.5s;
+
+    /* Transitions pour l'animation */
+    span {
+        position: absolute;
+        width: 40%;
+        height: 100%;
+        background-color: var(--button-primary);
+        transform: translateY(150%);
+        border-radius: 50%;
+        left: calc((var(--n) - 1) * 25%);
+        transition: transform 0.5s;
+        transition-delay: calc((var(--n) - 1) * 0.1s);
+        z-index: -1;
+    }
+
+    &:hover {
+        color: var(--background-primary);
+        cursor: pointer;
+    }
+
+    &:hover span {
+        transform: translateY(0) scale(2);
+    }
+
+    /* Définition des variables pour chaque span */
+    span:nth-child(2) {
+        --n: 1;
+    }
+    span:nth-child(3) {
+        --n: 2;
+    }
+    span:nth-child(4) {
+        --n: 3;
+    }
+    span:nth-child(5) {
+        --n: 4;
+    }
+    span:nth-child(5) {
+        --n: 5;
+    }
+
+    /* Media queries existantes */
     @media screen and (max-width: 1200px) and (min-width: 950px) {
         font-size: var(--text-sm);
     }
@@ -22,6 +89,8 @@
         font-size: var(--text-sm);
     }
 }
+
+
 .mibile_header{
     position: fixed;
     top: 0;
