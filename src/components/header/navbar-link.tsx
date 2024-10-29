@@ -1,5 +1,6 @@
 import Link from "next/link";
 import navbarLinkStyles from "./navbar-link.module.scss";
+import React from "react";
 
 interface NavbarLinkProps {
     text: string;

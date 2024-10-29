@@ -1,0 +1,32 @@
+@import "../../../assets/fonts/fonts";
+
+.heroComtainer{
+    margin-top: 50px;
+    height: calc(100vh - 50px);
+    width: 100vw;
+    .contentWrapper{
+        display: flex;
+        width: 98%;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        gap: 30px;
+        margin: auto;
+        height: 100%;
+    }
+    .titleWrapper{
+        text-align: center;
+        font-size: var(--title-font-size-mobile);
+        font-family: var(--primary-content);
+    }
+    .highlightedPartOfTitle{
+        position: relative;
+    }
+
+}
+@media (min-width: 600px ) {
+    .heroComtainer {
+        height: calc(100vh - 75px);
+        margin-top: 75px;
+    }
+}

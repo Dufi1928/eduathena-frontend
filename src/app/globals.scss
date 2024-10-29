@@ -6,44 +6,36 @@ html,body{
     padding:0;
 }
 * {
-    --scrollbar-bg: #F9E7CF ; /* Couleur de fond de la barre de défilement */
-    --scrollbar-thumb: #1E585E; /* Couleur du pouce (la partie que l'on déplace) */
-    --scrollbar-thumb-hover: #70C5B1; /* Couleur du pouce au survol */
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
-    --background-primary: #F9E7CF;
-    --background-secondary: #F8F5F0;
-    --text-primary: #1F392C;
-    --button-primary: #1E585E;
-    --orange: #F96C65;
-    --light-aquamarine: #70C5B1;
-    --primary-black: #292828;
-    --primary-grey: #313131;
+    --header-bg: #292828;
+    --header-text-color: #F9E7CF;
+    --primary-pink: #E178C5;
+    --secondary-pink: #d067b1;
+    --page-background: #FCF8F3;
+
+
 
     --primary-text: 'Nunito', sans-serif;
     --primary-content: "SF Pro Display", sans-serif;
-
-    --text-lg: 25px;
-    --text-md: 20px;
-    --text-sm: 16px;
-    --text-xs: 16px;
-    --text-xxs: 10px;
+    --title-font-size: 3.2rem;
+    --title-font-size-mobile: 1.2rem;
 }
 
-/* Styles pour les navigateurs basés sur WebKit */
+body{
+    background: var(--page-background);
+}
 ::-webkit-scrollbar {
-    width: 6px; /* Largeur de la barre de défilement */
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: transparent; /* Couleur de fond de la piste */
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--scrollbar-thumb); /* Couleur du pouce */
-    border-radius: 6px; /* Arrondir les coins du pouce */
+    background-color: var(--header-bg);
+    border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--scrollbar-thumb-hover); /* Couleur du pouce au survol */
+    background-color: var(--scrollbar-thumb-hover);
 }
