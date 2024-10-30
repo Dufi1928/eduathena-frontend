@@ -9,7 +9,7 @@
     background: var(--primary-pink);
     border: none;
     border-radius: 5px;
-    color: var(--header-text-color);
+    color: white;
     padding: 5px 25px;
     font-family: var(--primary-text);
     font-size: var(--text-md);
@@ -49,7 +49,7 @@
         min-width: calc(100% - 44px);
         justify-content: center;
         text-align: center;
-        color: var(--header-text-color);
+        color: white;
         font-weight: bold;
         font-family: var(--primary-text);
         font-size: var(--text-lg);
@@ -103,7 +103,7 @@
         .left_side , .right_side{
             width: 35%;
             align-items: center;
-            color: var(--header-text-color);
+            color: white;
             font-weight: 500;
             justify-content: space-evenly;
             font-size: var(--text-lg);
@@ -115,7 +115,7 @@
             font-weight: 700;
             font-family: var(--primary-text);
             letter-spacing: 1px;
-            color: var(--header-text-color);
+            color: white;
         }
     }
 }

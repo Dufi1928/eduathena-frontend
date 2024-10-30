@@ -1,3 +1,4 @@
+'use client'
 import Link from "next/link";
 import navbarLinkStyles from "./navbar-link.module.scss";
 import React from "react";
