@@ -13,7 +13,7 @@ export default function Hero() {
                     <p className={styles.description}>Awaken continuous learning, everywhere and always. Discover new perspectives and knowledge at every moment that feed your thirst for learning and evolving.</p>
                 </div>
                 <div className={styles.cta_link_wrapper}>
-                    <a className={styles.cta_link} href="#">Try for free</a>
+                    <a className={styles.cta_link} href="/">Try for free</a>
                 </div>
             </div>
         </section>
