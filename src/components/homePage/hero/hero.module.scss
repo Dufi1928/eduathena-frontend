@@ -118,7 +118,21 @@
     .hero_comtainer{
         height: calc(100vh - 75px);
         margin-top: 75px;
-
+        .lamp{
+            width: 46.83px;
+            height: 80.58px;
+            position: absolute;
+            bottom: 25%;
+            left: 5%;
+        }
+        .lamp1{
+            width: 20%;
+            top: 5%;
+            rotate: -25deg;
+            position: absolute;
+            bottom: 11%;
+            right: -20%;
+        }
     }
 
     .cta_link{
@@ -131,6 +145,7 @@
         width: 350px;
         height: 60px;
     }
+
 }
 @media (min-width: 1000px ) {
     .highlighted_part_of_title::after {

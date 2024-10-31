@@ -25,7 +25,7 @@ export default function Hero() {
                 <Image src={RightHend} alt="Hand"/>
             </div>
             <div className={styles.lamp}>
-                <Image src={Lamp} alt="lamp"/>
+                <Image src={Lamp} alt="lamp" />
             </div>
             <div className={styles.lamp1}>
                 <Image src={Lamp} alt="lamp"/>
