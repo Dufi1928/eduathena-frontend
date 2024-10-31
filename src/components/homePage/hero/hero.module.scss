@@ -2,9 +2,35 @@
 
 .hero_comtainer{
     margin-top: 50px;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 100px);
     width: 100vw;
+    position: relative;
+    overflow: hidden;
+    .left_line, .right_line{
+        display: none;
+    }
+    .left_hend{
+        display: none;
+    }
+    .right_hend{
+        display: none;
+    }
+    .lamp{
+        width: 100%;
+        position: absolute;
+        bottom: 11%;
+        left: 10%;
+    }
+    .lamp1{
+        width: 20%;
+        top: 5%;
+        rotate: -25deg;
+        position: absolute;
+        bottom: 11%;
+        right: -20%;
+    }
 }
+
 .content_wrapper{
     display: flex;
     width: 90%;
@@ -50,7 +76,6 @@
     transition: color 0.3s ease, transform 0.5s ease-in-out;
     z-index: 1;
 }
-
 .cta_link::before {
     content: "";
     position: absolute;
@@ -63,18 +88,14 @@
     transition: bottom 0.5s ease-in-out, rotate 0.5s ease-in-out;
     z-index: -1;
 }
-
 .cta_link:hover::before {
     rotate: 0deg;
     bottom: 0;
 }
-
 .cta_link:hover {
     transform: scale(1.1);
     transition: transform 0.5s ease-in-out;
 }
-
-
 .highlighted_part_of_title {
     position: relative;
     display: inline-block;
@@ -94,10 +115,12 @@
     }
 }
 @media (min-width: 600px ) {
-    .hero_comtainer {
+    .hero_comtainer{
         height: calc(100vh - 75px);
         margin-top: 75px;
+
     }
+
     .cta_link{
         padding: 10px 100px;
     }
@@ -118,8 +141,42 @@
         width: 100%;
         padding: 10px 200px;
     }
+    .hero_comtainer{
+        .left_hend{
+            display: flex;
+            top: 10%;
+            position: absolute;
+        }
+        .right_hend{
+            display: flex;
+            bottom: 17%;
+            position: absolute;
+            right: 0;
+            z-index: -2;
+        }
+        .left_line{
+            margin: auto;
+            left: 0;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            height: 100%;
+            z-index: -1;
+        }
+        .right_line{
+            margin: auto;
+            right: 0;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            height: 100%;
+            z-index: -1;
+        }
+    }
     .content_wrapper{
         width: 60%;
+
+
     }
 }
 
