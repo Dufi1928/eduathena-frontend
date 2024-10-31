@@ -1,14 +1,17 @@
 @import "../../assets/fonts/fonts";
 
 
+.desktop_logo:hover, .signup_button:hover, .user_icon:hover {
+    cursor: pointer;
+}
 .signup_button{
     margin-bottom: 30px;
-    background: var(--button-primary);
+    background: var(--primary-pink);
     border: none;
     border-radius: 5px;
-    color: var(--background-primary);
+    color: white;
     padding: 5px 25px;
-    font-family: var(--text-primary);
+    font-family: var(--primary-text);
     font-size: var(--text-md);
     @media screen and (max-width: 1200px) and (min-width: 950px) {
         font-size: var(--text-sm);
@@ -22,6 +25,11 @@
         font-size: var(--text-sm);
     }
 }
+
+.signup_button:hover {
+    transform: scale(1.05);
+    background-color:var(--secondary-pink);
+}
 .mibile_header{
     position: fixed;
     top: 0;
@@ -30,7 +38,7 @@
     display: none;
     align-items: center;
     height: 50px;
-    background-color: var(--background-primary);
+    background-color: var(--header-bg);
     .menuIcon{
         margin-left: 20px;
         display: flex;
@@ -41,7 +49,7 @@
         min-width: calc(100% - 44px);
         justify-content: center;
         text-align: center;
-        color: var(--primary-grey);
+        color: white;
         font-weight: bold;
         font-family: var(--primary-text);
         font-size: var(--text-lg);
@@ -83,7 +91,7 @@
     }
     .nav{
         margin: auto;
-        background: var(--background-primary);
+        background: var(--header-bg);
         height: 75px;
         display: flex;
         justify-content: space-between;
@@ -95,7 +103,7 @@
         .left_side , .right_side{
             width: 35%;
             align-items: center;
-            color: var(--primary-grey);
+            color: white;
             font-weight: 500;
             justify-content: space-evenly;
             font-size: var(--text-lg);
@@ -107,7 +115,7 @@
             font-weight: 700;
             font-family: var(--primary-text);
             letter-spacing: 1px;
-            color: var(--primary-grey);
+            color: white;
         }
     }
 }
@@ -148,7 +156,7 @@
         transform: translateX(-100%);
         z-index: 2;
         width: 100%;
-        background-color: var(--background-primary);
+        background-color: var(--header-bg);
         height: calc(100% + 50px);
         display: flex;
         flex-direction: column;
