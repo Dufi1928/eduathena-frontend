@@ -6,6 +6,7 @@ import RightSvg from "../../../assets/images/herosection/right_svg.svg" ;
 import LeftHend from "../../../assets/images/herosection/left_hend.png" ;
 import RightHend from "../../../assets/images/herosection/right_hend.png" ;
 import Lamp from "../../../assets/images/herosection/lamp.png" ;
+import Link from 'next/link';
 
 
 export default function Hero() {
@@ -41,7 +42,7 @@ export default function Hero() {
                         perspectives and knowledge at every moment that feed your thirst for learning and evolving.</p>
                 </div>
                 <div className={styles.cta_link_wrapper}>
-                    <a className={styles.cta_link} href="/">Try for free</a>
+                    <Link href="/" className={styles.cta_link} passHref>Try for free</Link>
                 </div>
             </div>
         </section>
